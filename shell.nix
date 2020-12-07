@@ -1,12 +1,5 @@
 { ghcVersion ? "ghc882" }:
-with import <nixpkgs>{
-  overlays = [
-    (import (fetchTarball {
-      url = "https://github.com/infinisil/all-hies/tarball/09ba836904fa290b5e37d5403150ea0c921661fb";
-      sha256 = "0qbjqv1fkhkx1cffqybz1mfks1jphh0vh3zd8ad2qd6lch4gyys4";
-    }) {}).overlay
-  ];
-};
+with import <nixpkgs>{};
 let 
   haskellPackages = (hp: with hp; [ 
     split 
