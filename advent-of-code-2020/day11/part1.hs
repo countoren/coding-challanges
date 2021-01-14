@@ -1,6 +1,5 @@
 import Control.Monad
 import Data.Foldable
-import Debug.Trace
 
 example = 
     [ "L.LL.LL.LL"
