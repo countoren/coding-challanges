@@ -1,4 +1,5 @@
 module Calculator where
+
 import Text.ParserCombinators.ReadP
 
 -- | Evaluate an expression
@@ -6,10 +7,10 @@ import Text.ParserCombinators.ReadP
 --
 -- given the following expression, the result is...
 -- >>> evaluate "10 + (30 * 2) + 3"
--- 73
+-- 73.0
 --
 -- >>> evaluate "(10 + 30) * (2 + 3)"
--- 240
+-- 200.0
 --
 evaluate :: String -> Double
 evaluate = fst . last . readP_to_S p . filter (/=' ')
@@ -25,10 +26,10 @@ number = read <$> munch1 (\c-> (elem c ['0'..'9']) || c == '.')
 
 -- | Add parser
 -- >>> ( \[(op, "")] -> op 3 4 ) $ readP_to_S add "+"
--- 7
+-- 7.0
 --
 -- >>> ( \[(op, "")] -> op 4 3 ) $ readP_to_S add "-"
--- 1
+-- 1.0
 --
 add = choice [(+) <$ char '+', (-) <$ char '-']
 
