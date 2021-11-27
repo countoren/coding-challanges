@@ -1,2 +1,11 @@
 *.vscode
 *.vscode-exts
+scala/project
+scala/.metals
+scala/target
+extensions.nix
+main*
+result
+super-stack/ConsoleApp5/.vs/ConsoleApp5
+super-stack/ConsoleApp5/ConsoleApp5
+test
