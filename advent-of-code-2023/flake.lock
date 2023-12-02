@@ -1,0 +1,41 @@
+{
+  "nodes": {
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1689510077,
+        "narHash": "sha256-sFOtguHP6enqXsySLREIrevxwz/P9Da/9XQwiIiTK38=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "12d2f0da28a47f907825939630b4a0e8122fabe3",
+        "type": "github"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "type": "indirect"
+      }
+    },
+    "root": {
+      "inputs": {
+        "nixpkgs": "nixpkgs",
+        "vims": "vims"
+      }
+    },
+    "vims": {
+      "locked": {
+        "lastModified": 1701396087,
+        "narHash": "sha256-/77CA9iFJI4HTixYvhPISfVFA2dElK+/SB1pzhp50v4=",
+        "owner": "countoren",
+        "repo": "vims",
+        "rev": "fc715ca0e1ccbe576b2f1e18e46a573d6f30a036",
+        "type": "github"
+      },
+      "original": {
+        "owner": "countoren",
+        "repo": "vims",
+        "type": "github"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
