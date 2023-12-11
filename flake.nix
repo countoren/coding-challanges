@@ -5,6 +5,7 @@
 
   let system = "x86_64-linux";
   pkgs = import nixpkgs { inherit system;};
+  mainRS = "advent-of-code-2023/main.rs";
 
   in
   {
@@ -12,7 +13,7 @@
     #shell scripts 
     (lib.mapAttrs writeShellScript 
     {
-      d1 = "cat ${./day1}";
+      d1 = "cat ${./advent-of-code-2023/day1}";
       day1part1 = "${s.d1} | ${s.lastFirstForEachLine}";
       day1part2 = "${s.d1} | ${s.replaceWordsAndLettersTakeMinMaxAndSum} ";
       default = s.day1part2;
@@ -23,7 +24,7 @@
       '';
 
       utils-rs-main = ''
-        echo $(${s.utils-projFolder})/advent-of-code-2023/main.rs
+        echo $(${s.utils-projFolder})/${mainRS}
       '';
 
       compile = ''
@@ -56,7 +57,7 @@
     #rust scripts
     (lib.mapAttrs (k: writers.writeRust k {})
     {
-        replaceWordsAndLettersTakeMinMaxAndSum = builtins.readFile ./day1p2.rs;
+        replaceWordsAndLettersTakeMinMaxAndSum = builtins.readFile ./advent-of-code-2023/day1p2.rs;
     })
       
 
@@ -68,6 +69,7 @@
       buildInputs = with pkgs; [
         (builtins.attrValues self.packages.${system})
         rustc
+        cargo
         graphviz
         rust-analyzer
         evcxr
@@ -77,7 +79,7 @@
           inherit pkgs;
           pkgsPath = "./advent-of-code-2023";
           additionalVimrc =  ''
-              exe "e main.rs"
+              exe "e ${mainRS}"
               exe "sp | terminal repl"
               exe "sp | terminal watch"
 
