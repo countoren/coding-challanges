@@ -1,7 +1,8 @@
 { pkgs ? import <nixpkgs> {}
+, pathFromProjRoot? "."
 }:
 let 
-  mainRS = "./main.rs";
+  mainRS = "${pathFromProjRoot}/main.rs";
   buildRust = name: { rs-file , cargoHash }: with pkgs; ''${rustPlatform.buildRustPackage {
         inherit name cargoHash;
         src = runCommand "${name}-src" {} ''
@@ -27,7 +28,7 @@ in with pkgs; lib.mapAttrs writeShellScriptBin (lib.fix (s:
 
       #utils
       edit = ''
-        nix develop -c -- neovide 
+        nix develop -c -- neovide
       '';
 
       utils-rs-main = ''
@@ -35,13 +36,12 @@ in with pkgs; lib.mapAttrs writeShellScriptBin (lib.fix (s:
       '';
 
       compile = ''
-        rustc $(${s.utils-rs-main})
+        cargo build 
       '';
       watch = ''
         ls $(${s.utils-rs-main}) | ${pkgs.entr}/bin/entr -s ${s.compile}
       '';
       repl = ''
-        ${s.utils-rust-create-repl-prelude} && \
         nix develop -c evcxr
       '';
       utils-projFolder = ''${git}/bin/git rev-parse --show-toplevel'';

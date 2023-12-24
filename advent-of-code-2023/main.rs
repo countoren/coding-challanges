@@ -2,7 +2,7 @@ use std::io::{self, BufRead, Write};
 use nom::{
   IResult, Parser,
   branch::alt,
-  multi::{separated_list1, many1},
+  multi::separated_list1,
   combinator::{map_res,flat_map, success,value,eof},
   sequence::{delimited,preceded, terminated},
   character::complete::{i32,space0,line_ending},
@@ -44,7 +44,7 @@ mod tests {
    }
    #[test]
    fn t() {
-       assert_eq!(flat_map(tag::<&str,&str,Error<_>>("3"),|t| tag("4"))("34") ,Ok(("", "4")));
+       assert_eq!(flat_map(tag::<&str,&str,Error<_>>("3"),|_| tag("4"))("34") ,Ok(("", "4")));
    }
    #[test]
    fn valid_game_t() {
